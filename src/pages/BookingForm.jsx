@@ -1,33 +1,49 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import '../style/bookingForm.css';
+import React, { useState } from "react";
+import axios from "axios";
+import "../style/bookingForm.css";
+import { SERVER_URL } from "../App";
+import Swal from "sweetalert2";
 
 const BookingForm = () => {
-  const [activityName, setActivityName] = useState('');
-  const [bookingDate, setBookingDate] = useState('');
-  const [activityTime, setActivityTime] = useState('');
-  const [phone, setPhone] = useState('');
-  const [feedback, setFeedback] = useState('');
+  const [activityName, setActivityName] = useState("");
+  const [bookingDate, setBookingDate] = useState("");
+  const [activityTime, setActivityTime] = useState("");
+  const [phone, setPhone] = useState("");
+  const [feedback, setFeedback] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem('token'); // Get the token from localStorage
+    const token = localStorage.getItem("token");
     try {
-      const response = await axios.post('http://localhost:7000/api/v1/activities', {
-        ActivityName: activityName,
-        BookingDate: bookingDate,
-        ActivityTime: activityTime,
-        Phone: phone
-      }, {
-        headers: {
-          'Authorization': `Bearer ${token}`, // Include token in headers
-          'Content-Type': 'application/json'
+      const response = await axios.post(
+        `${SERVER_URL}/activities/create`,
+        {
+          activityName: activityName,
+          bookingDate: bookingDate,
+          activityTime: activityTime,
+          phone: phone,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include token in headers
+            "Content-Type": "application/json",
+          },
         }
-      });
-      setFeedback('Booking confirmed!');
-      console.log(response.data);
+      );
+      if (response.data.success) {
+        Swal.fire({
+          title: "Success!",
+          text: response.data.message || "Booking confirmed!",
+          icon: "success",
+        });
+        // setActivityName("");
+        // setBookingDate("");
+        // setActivityTime("");
+        // setPhone("");
+      }
+      setFeedback("Booking confirmed!");
     } catch (error) {
-      setFeedback('Error booking activity. Please try again.');
+      setFeedback("Error booking activity. Please try again.");
       console.error(error);
     }
   };
@@ -42,14 +58,20 @@ const BookingForm = () => {
                 <div className="account-settings">
                   <div className="user-profile">
                     <div className="user-avatar">
-                      <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin" />
+                      <img
+                        src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                        alt="Maxwell Admin"
+                      />
                     </div>
                     <h5 className="user-name">Yuki Hayashi</h5>
                     <h6 className="user-email">yuki@Maxwell.com</h6>
                   </div>
                   <div className="about">
                     <h5>About</h5>
-                    <p>I'm Yuki. Full Stack Designer I enjoy creating user-centric, delightful and human experiences.</p>
+                    <p>
+                      I'm Yuki. Full Stack Designer I enjoy creating
+                      user-centric, delightful and human experiences.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -74,9 +96,15 @@ const BookingForm = () => {
                             onChange={(e) => setActivityName(e.target.value)}
                           >
                             <option value=""></option>
-                            <option value="Boot Camp Fitness">Boot Camp Fitness</option>
-                            <option value="Weight Loss Program">Weight Loss Program</option>
-                            <option value="Nutrition Guideline">Nutrition Guideline</option>
+                            <option value="Boot Camp Fitness">
+                              Boot Camp Fitness
+                            </option>
+                            <option value="Weight Loss Program">
+                              Weight Loss Program
+                            </option>
+                            <option value="Nutrition Guideline">
+                              Nutrition Guideline
+                            </option>
                           </select>
                         </div>
                       </div>
@@ -120,17 +148,33 @@ const BookingForm = () => {
                     <div className="row gutters">
                       <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div className="text-right">
-                          <button type="button" id="cancel" name="cancel" className="btn btn-secondary m-3">Cancel</button>
-                          <button type="submit" id="submit" name="submit" className="btn btn-danger">Confirm</button>
+                          <button
+                            type="button"
+                            id="cancel"
+                            name="cancel"
+                            className="btn btn-secondary m-3"
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            type="submit"
+                            id="submit"
+                            name="submit"
+                            className="btn btn-danger"
+                          >
+                            Confirm
+                          </button>
                         </div>
                       </div>
                     </div>
                   </form>
-                  {feedback && <div className="row gutters mt-3">
-                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                      <div className="alert alert-info">{feedback}</div>
+                  {feedback && (
+                    <div className="row gutters mt-3">
+                      <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div className="alert alert-info">{feedback}</div>
+                      </div>
                     </div>
-                  </div>}
+                  )}
                 </div>
               </div>
             </div>
@@ -142,22 +186,6 @@ const BookingForm = () => {
 };
 
 export default BookingForm;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState } from 'react';
 // import axios from 'axios';
@@ -222,11 +250,11 @@ export default BookingForm;
 //                                             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 //                                                 <div className="form-group">
 //                                                     <label htmlFor="activityName">Activity Name</label>
-//                                                     <select 
-//                                                         type="text" 
-//                                                         className="form-control" 
-//                                                         id="activityName" 
-//                                                         placeholder="Enter activity name" 
+//                                                     <select
+//                                                         type="text"
+//                                                         className="form-control"
+//                                                         id="activityName"
+//                                                         placeholder="Enter activity name"
 //                                                         value={activityName}
 //                                                         onChange={(e) => setActivityName(e.target.value)}
 //                                                     >
@@ -234,17 +262,17 @@ export default BookingForm;
 //                                                         <option>Boot Camp Fitness</option>
 //                                                         <option>Weight Loss Program</option>
 //                                                         <option>Nutrition Guidline</option>
-//                                                      </select>   
+//                                                      </select>
 //                                                 </div>
 //                                             </div>
 //                                             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 //                                                 <div className="form-group">
 //                                                     <label htmlFor="bookingDate">Booking Date</label>
-//                                                     <input 
-//                                                         type="date" 
-//                                                         className="form-control" 
-//                                                         id="bookingDate" 
-//                                                         placeholder="Enter booking date" 
+//                                                     <input
+//                                                         type="date"
+//                                                         className="form-control"
+//                                                         id="bookingDate"
+//                                                         placeholder="Enter booking date"
 //                                                         value={bookingDate}
 //                                                         onChange={(e) => setBookingDate(e.target.value)}
 //                                                     />
@@ -253,11 +281,11 @@ export default BookingForm;
 //                                             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 //                                                 <div className="form-group">
 //                                                     <label htmlFor="activityTime">Activity Time</label>
-//                                                     <input 
-//                                                         type="time" 
-//                                                         className="form-control" 
-//                                                         id="activityTime" 
-//                                                         placeholder="Enter activity time" 
+//                                                     <input
+//                                                         type="time"
+//                                                         className="form-control"
+//                                                         id="activityTime"
+//                                                         placeholder="Enter activity time"
 //                                                         value={activityTime}
 //                                                         onChange={(e) => setActivityTime(e.target.value)}
 //                                                     />
@@ -266,11 +294,11 @@ export default BookingForm;
 //                                             <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 //                                                 <div className="form-group">
 //                                                     <label htmlFor="phone">Phone</label>
-//                                                     <input 
-//                                                         type="text" 
-//                                                         className="form-control" 
-//                                                         id="phone" 
-//                                                         placeholder="Enter phone number" 
+//                                                     <input
+//                                                         type="text"
+//                                                         className="form-control"
+//                                                         id="phone"
+//                                                         placeholder="Enter phone number"
 //                                                         value={phone}
 //                                                         onChange={(e) => setPhone(e.target.value)}
 //                                                     />
@@ -302,32 +330,6 @@ export default BookingForm;
 // };
 
 // export default BookingForm;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React from 'react'
 // import '../style/bookingForm.css'
@@ -374,7 +376,7 @@ export default BookingForm;
 //                                             <label htmlFor="eMail">Booking Date</label>
 //                                             <input type="date" className="form-control" id="eMail" placeholder="Enter email ID" />
 //                                         </div>
-//                                     </div> 
+//                                     </div>
 //                                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12"> <br/> <br/>
 //                                         <div className="form-group">
 //                                             <label htmlFor="phone">Phone</label>
