@@ -11,6 +11,11 @@ const BookingForm = () => {
   const [phone, setPhone] = useState("");
   const [feedback, setFeedback] = useState("");
 
+  // uppdate the user activity: `${SERVER_URL}/activities/update/${id}`
+  // get all the user activity: `${SERVER_URL}/activities/all`
+  // delete the user activity: `${SERVER_URL}/activities/delete/${id}`
+  // get single the user activity: `${SERVER_URL}/activities/single/${id}`
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
