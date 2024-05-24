@@ -20,7 +20,7 @@ const About = () => {
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-4 col-md-4 col-sm-6">
-                                <h4>About Us</h4>
+                                <h3>About Us</h3> <br/>
                                 <div className="thumb-pad4">
                                     <div className="thumbnail">
                                         <figure><img src={img1} alt /></figure>
@@ -33,7 +33,7 @@ const About = () => {
                                 </div>
                             </div>
                             <div className="col-lg-4 col-md-4 col-sm-6">
-                                <h4>Our Advantages</h4>
+                                <h3>Our Advantages</h3> <br/>
                                 <ul className="list1">
                                     <li>
                                         <div className="badge">01</div>
@@ -59,7 +59,7 @@ const About = () => {
                                 </ul>
                             </div>
                             <div className="col-lg-4 col-md-4 col-sm-12">
-                                <h4>What We Offer</h4>
+                                <h3>What We Offer</h3> <br/>
                                 <p>Nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse. Mauris fermentum dictum magna.</p>
                                 <p>Sed laoreet aliquam leo. Ut tellus dolor, dapibus eget, elementum vel, cursus eleifend, elit.</p>
                                 <ul className="list1-1">

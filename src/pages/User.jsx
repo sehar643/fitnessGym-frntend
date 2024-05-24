@@ -53,7 +53,7 @@ const User = () => {
 
     return (
         <div>
-            <h1 className='my-3 text-center text-danger'>List of Activities</h1>
+            <h1 className='my-3 text-center text-danger'>List of Activities</h1> <br/>
             <div className='container w-75'>
                 <table className="table table-bordered table-striped table-hover">
                     <thead>
@@ -89,7 +89,7 @@ const User = () => {
                             )
                         }
                     </tbody>
-                </table>
+                </table> <br/><br/>
             </div>
             <Toaster />
         </div>

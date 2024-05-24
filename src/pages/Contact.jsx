@@ -12,7 +12,7 @@ const Contact = () => {
       <div className="global indent">
         <div className="container">
           <div className="map">
-            <h4>Contact Us</h4>
+            <h2>Contact Us</h2> <br/>
             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d24214.807650104907!2d-73.94846048422478!3d40.65521573400813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1395650655094" style={{ border: 0 }} />
           </div>
         </div>
@@ -37,25 +37,26 @@ const Contact = () => {
                 </div>
               </div>
               <div className="col-lg-8 col-md-8 col-sm-8 form-box">
-                <h4>Get in Touch</h4>
+                <h2>Get in Touch</h2>
                 <form id="contact-form">
                   <div className="contact-form-loader" />
                   <fieldset>
-                    <label className="name form-div-1"> Name
+                    <label className="name form-div-"> Name
                       <input type="text" placeholder='Name'  />
                       <span className="empty-message">*This field is required.</span>
                       <span className="error-message">*This is not a valid name.</span>
                     </label>
-                    <label className="email form-div-2">Email
+                    <label className="email form-div-">Email
                       <input type="text" name="email" placeholder="E-mail*:" />
                       <span className="empty-message">*This field is required.</span>
                       <span className="error-message">*This is not a valid email.</span>
                     </label>
-                    <label className="phone form-div-3">Telephone
+                    <label className="phone form-div-">Telephone
                       <input type="text" name="phone" placeholder="Telephone:"  />
                       <span className="empty-message">*This field is required.</span>
                       <span className="error-message">*This is not a valid phone.</span>
                     </label>
+            
                     <label className="message form-div-4">Messege
                       <textarea name="message" placeholder="Comment*:"   />
                       <span className="empty-message">*This field is required.</span>

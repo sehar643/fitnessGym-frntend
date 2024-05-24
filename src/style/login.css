@@ -5,7 +5,10 @@
     padding-left: 15px;
     width: 100%;
 }
-
+.card-body{
+    background: linear-gradient(50deg, #e69c9c 0%, #dde6f5 60%);
+    height: 400px;
+}
 @media (min-width: 576px) {
     .container {
         max-width: 540px;

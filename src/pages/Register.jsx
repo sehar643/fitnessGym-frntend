@@ -4,6 +4,7 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import "../style/signup.css";
 import { SERVER_URL } from "../App";
+import img from '../img/GettyImage.jpg'
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -48,7 +49,7 @@ const Register = () => {
 
   return (
     <div>
-      <h2 className="text-primary text-center text-bolder my-4">
+      <h2 className="text-danger mt-5 text-center text-bolder my-4">
         Sign-up / Register Page
       </h2>
       <div id="main-wrapper" className="container">
@@ -127,21 +128,20 @@ const Register = () => {
                     </div>
                   </div>
                   <div className="col-lg-6 d-none d-lg-inline-block">
-                    <div className="account-block rounded-right">
+                    <div className="account-block">
                       <div className="overlay customBackground rounded-right" />
                       <div className="account-testimonial">
-                        <img
-                          src="https://mycareerconnect.com/wp-content/uploads/2022/06/iStock-1332378618.jpg"
-                          width={300}
-                          height={300}
+                        <img className="fitnes-img"
+                          src={img}
+                         
                         />
-                        <h4 className="text-white mb-4">
+                        {/* <h4 className="text-white mb-4">
                           This beautiful theme yours!
-                        </h4>
-                        <p className="lead text-white">
+                        </h4> */}
+                        {/* <p className="lead text-white">
                           "Best investment i made for a long time. Can only
                           recommend it for other users."
-                        </p>
+                        </p> */}
                         {/* <p>- Admin User</p> */}
                       </div>
                     </div>
@@ -149,18 +149,18 @@ const Register = () => {
                 </div>
               </div>
               {/* end card-body */}
-            </div>
+            </div> <br/>
             {/* end card */}
             <p className="text-muted text-center mt-3 mb-0">
               Already have an account?
               <Link to="/login" className="text-primary ml-1">
                 login
               </Link>
-            </p>
+            </p> <br/> <br/>
             {/* end row */}
           </div>
           {/* end col */}
-        </div>
+        </div> <br/> <br/>
         {/* Row */}
       </div>
       <Toaster />

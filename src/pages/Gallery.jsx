@@ -22,7 +22,7 @@ const Gallery = () => {
                 {/*content*/}
                 <div className="gallery-box">
                     <div className="container">
-                        <h4>Our Gallery</h4>
+                        <h2>Our Gallery</h2> <br/> <br/>
                         <div className="row">
                             <div className="col-lg-3 col-md-4 col-sm-6 col-xs-6 pad1Box">
                                 <div className="thumb-pad1 indent">

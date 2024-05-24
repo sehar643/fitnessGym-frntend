@@ -19,7 +19,7 @@ const Products = () => {
       <div className="global indent">
         {/*content*/}
         <div className="container">
-          <h4>Our Top Programs</h4>
+          <h2>Our Top Programs</h2> <br/>
           <div className="row">
             <div className="col-lg-4 col-md-4 col-sm-4">
               <div className="thumb-pad2">
@@ -27,7 +27,7 @@ const Products = () => {
                   <figure><img src={img1} alt /></figure>
                   <div className="caption maxheight2">
                     <p className="title">Boot Camp Fitness</p>
-                    <p>Tempor incididunt ut labore et dolore magna aliqua. Enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                    <p>Tempor incididunt t consectetur adipisicing elit. Reiciendis, veniam? ut labore et dolore magna aliqua. Enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
                     <Link to="/users"><button className='book-btn'>Book Now</button></Link>
                   </div>
                 </div>
@@ -74,7 +74,7 @@ const Products = () => {
           <div className="container">
             <div className="row">
               <div className="col-lg-8 col-md-8 col-sm-8">
-                <h4>Group Dynamic Training Programs</h4>
+                <h2>Group Dynamic Training Programs</h2> <br/><br/>
                 <div className="thumb-pad5">
                   <div className="thumbnail">
                     <figure><img src={img4} alt /></figure>
@@ -97,7 +97,7 @@ const Products = () => {
                 </div>
               </div>
               <div className="col-lg-4 col-md-4 col-sm-4">
-                <h4>Private Training</h4>
+                <h2>Private Training</h2> <br/><br/>
                 <div className="thumb-pad4">
                   <div className="thumbnail">
                     <figure><img src={img6} alt /></figure>

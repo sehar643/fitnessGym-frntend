@@ -1,6 +1,8 @@
 body{margin-top:20px;}
 .footer {
-    background: #ee8377;
+    /* background: #ee8377; */
+	/* background: linear-gradient(120deg, #c1d3f8 0%, #dd8a9a 100% ); */
+	background: linear-gradient(120deg,  #dd8a9a 0%, #c1d3f8 100% );
 	padding-bottom: 50px;
 	padding-top: 80px;
 }

@@ -50,7 +50,7 @@ const Login = () => {
             <div className="card-group mb-0">
               <div className="card p-4">
                 <div className="card-body">
-                  <h1>Login</h1>
+                  <h1>Login</h1> <br/> <br/>
                   <p className="text-muted">Sign In to your account</p>
                   {error && <div className="alert alert-danger">{error}</div>}
                   <form onSubmit={loginUser}>
@@ -77,7 +77,7 @@ const Login = () => {
                         className="form-control"
                         placeholder="Password"
                       />
-                    </div>
+                    </div> <br/>
                     <div className="row">
                       <div className="col-6">
                         <button
@@ -97,17 +97,17 @@ const Login = () => {
                 </div>
               </div>
               <div
-                className="card text-white bg-primary py-5 d-md-down-none"
+                className="card text-white py-5 d-md-down-none"
                 style={{ width: "44%" }}
               >
                 <div className="card-body text-center">
                   <div>
-                    <h2>Sign up</h2>
+                    <h2>Sign up</h2> <br/> <br/>
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipisicing elit,
                       sed do eiusmod tempor incididunt ut labore et dolore magna
                       aliqua.
-                    </p>
+                    </p> <br/>
                     <Link
                       to="/register"
                       type="button"
@@ -120,7 +120,7 @@ const Login = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> <br/> <br/>
       </div>
       <Toaster />
     </div>

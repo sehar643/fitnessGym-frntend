@@ -54,7 +54,7 @@ const BookingForm = () => {
   };
 
   return (
-    <div>
+    <div> <br/>
       <div className="container mt-5">
         <div className="row gutters">
           <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
@@ -185,7 +185,7 @@ const BookingForm = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> <br/> <br/>
     </div>
   );
 };
