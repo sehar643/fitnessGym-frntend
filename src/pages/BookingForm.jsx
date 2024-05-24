@@ -41,10 +41,10 @@ const BookingForm = () => {
           text: response.data.message || "Booking confirmed!",
           icon: "success",
         });
-        // setActivityName("");
-        // setBookingDate("");
-        // setActivityTime("");
-        // setPhone("");
+        setActivityName("");
+        setBookingDate("");
+        setActivityTime("");
+        setPhone("");
       }
       setFeedback("Booking confirmed!");
     } catch (error) {

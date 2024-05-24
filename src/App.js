@@ -6,7 +6,7 @@ import MainNavbar from "./components/MainNavbar";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Contact from "./pages/Contact";
-import Users from "./pages/User";
+import User from "./pages/User";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Protectedcomp from "./components/Protectedcomp";
@@ -14,6 +14,8 @@ import BookingForm from "./pages/BookingForm";
 import Footer from "./components/Footer";
 import Gallery from "./pages/Gallery";
 import About from "./pages/About";
+import UpdateComp from "./pages/UpdateComp";
+import Admin from "./pages/admin/Admin";
 
 export const SERVER_URL = "http://localhost:7000/api";
 
@@ -31,7 +33,10 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/users" element={<BookingForm />} />
+            <Route path="/user-list" element={<User />} />
+            <Route path="/update/:id" element={<UpdateComp />} />
           </Route>
+          <Route path="/admin" element={<Admin />} />
 
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

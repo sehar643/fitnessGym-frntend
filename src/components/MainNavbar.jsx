@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import logo from '../img/logo.png'
 
 const MainNavbar = () => {
     const navigate = useNavigate()
@@ -49,7 +50,7 @@ const MainNavbar = () => {
 
 <nav className="navbar navbar-expand-lg navbar-light bg-dark">
   <div className="container-fluid">
-    <Link className="navbar-brand" to="/"><img src="./images/logo.png" alt="image" /></Link>
+    <Link className="navbar-brand" to="/"><img src={logo} alt="image" /></Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon" />
     </button>
@@ -64,14 +65,20 @@ const MainNavbar = () => {
         <li className="nav-item">
           <Link className="nav-link" to="/products">Exercise</Link>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <Link className="nav-link" to="/users">My Activities</Link>
+        </li> */}
+        <li className="nav-item">
+          <Link className="nav-link" to="/user-list">My Activities</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/gallery">Gallery</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/contact">Contact</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/admin">Admin</Link>
         </li>
      
      
