@@ -26,14 +26,23 @@ const Login = () => {
         },
       };
 
-      let result = await axios.post(`${SERVER_URL}/auth/login`, formData, config);
+      let result = await axios.post(
+        `${SERVER_URL}/auth/login`,
+        formData,
+        config
+      );
       let userData = result.data;
+      console.log(userData);
 
       localStorage.setItem("token", userData.token);
       localStorage.setItem("user", JSON.stringify(userData.user));
-
-      navigate("/users");
-      toast.success("Login successful!");
+      if (userData.user.role == "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/");
+        toast.success("Login successful!");
+      }
+      // window.location.reload();
     } catch (error) {
       setError("Invalid email or password");
       console.error(error);
@@ -50,7 +59,7 @@ const Login = () => {
             <div className="card-group mb-0">
               <div className="card p-4">
                 <div className="card-body">
-                  <h1>Login</h1> <br/> <br/>
+                  <h1>Login</h1> <br /> <br />
                   <p className="text-muted">Sign In to your account</p>
                   {error && <div className="alert alert-danger">{error}</div>}
                   <form onSubmit={loginUser}>
@@ -77,13 +86,11 @@ const Login = () => {
                         className="form-control"
                         placeholder="Password"
                       />
-                    </div> <br/>
+                    </div>{" "}
+                    <br />
                     <div className="row">
                       <div className="col-6">
-                        <button
-                          type="submit"
-                          className="btn btn-primary px-4"
-                        >
+                        <button type="submit" className="btn btn-primary px-4">
                           Login
                         </button>
                       </div>
@@ -102,12 +109,13 @@ const Login = () => {
               >
                 <div className="card-body text-center">
                   <div>
-                    <h2>Sign up</h2> <br/> <br/>
+                    <h2>Sign up</h2> <br /> <br />
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipisicing elit,
                       sed do eiusmod tempor incididunt ut labore et dolore magna
                       aliqua.
-                    </p> <br/>
+                    </p>{" "}
+                    <br />
                     <Link
                       to="/register"
                       type="button"
@@ -120,7 +128,8 @@ const Login = () => {
               </div>
             </div>
           </div>
-        </div> <br/> <br/>
+        </div>{" "}
+        <br /> <br />
       </div>
       <Toaster />
     </div>
@@ -128,22 +137,6 @@ const Login = () => {
 };
 
 export default Login;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState } from "react";
 // import { Link, useNavigate } from "react-router-dom";
@@ -265,4 +258,3 @@ export default Login;
 // };
 
 // export default Login;
-
