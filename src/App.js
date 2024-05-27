@@ -1,4 +1,3 @@
-
 import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -17,6 +16,7 @@ import Gallery from "./pages/Gallery";
 import About from "./pages/About";
 import UpdateComp from "./pages/UpdateComp";
 import Admin from "./pages/admin/Admin";
+import toast, { Toaster } from "react-hot-toast";
 
 export const SERVER_URL = "http://localhost:7000/api";
 
@@ -25,6 +25,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar />
+        <Toaster />
         <MainNavbar />
         <Routes>
           <Route path="/" element={<Home />} />

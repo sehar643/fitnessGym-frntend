@@ -16,13 +16,6 @@ const MainNavbar = () => {
     }
   }, []);
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    localStorage.clear();
-    navigate("/login");
-    window.location.reload();
-  };
   return (
     <>
       <div>
@@ -96,7 +89,13 @@ const MainNavbar = () => {
                 <form className="d-flex">
                   {user ? (
                     <button
-                      onClick={logout}
+                      onClick={() => {
+                        localStorage.removeItem("token");
+                        localStorage.removeItem("user");
+                        localStorage.clear();
+                        navigate("/login");
+                        window.location.reload();
+                      }}
                       className="btn btn-danger"
                       type="submit"
                     >

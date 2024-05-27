@@ -2,14 +2,18 @@ import React, { useEffect, useState } from "react";
 import "../admin/admin.css";
 import axios from "axios";
 import { SERVER_URL } from "../../App";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
   const [activities, setActivities] = useState([]);
+  const navigate = useNavigate();
 
   const getAllAdminActivities = async () => {
     try {
       const response = await axios.get(
-        `${SERVER_URL}/activities/admin/activites`,
+        `${SERVER_URL}/activities/admin/activities`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -17,11 +21,52 @@ const Admin = () => {
           },
         }
       );
-      const activities = response.data.data;
-      return activities;
+      if (response.data.success) {
+        return response.data.data;
+      } else {
+        toast.error("Error while fetching activities");
+        return [];
+      }
     } catch (error) {
+      toast.error("Failed to fetch activities");
       console.error(error);
+      return [];
     }
+  };
+
+  const handleDelete = async (id) => {
+    Swal.fire({
+      icon: "warning",
+      title: "Deleting Activity",
+      text: "Are you sure you want to delete?",
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await axios.delete(
+            `${SERVER_URL}/activities/delete/${id}`,
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          if (response.data.success) {
+            toast.success("Activity deleted");
+            // Fetch activities again after deletion
+            const updatedActivities = await getAllAdminActivities();
+            setActivities(updatedActivities);
+          } else {
+            toast.error("Failed to delete activity");
+          }
+        } catch (error) {
+          toast.error("Failed to delete activity");
+          console.error("Failed to delete activity:", error);
+        }
+      }
+    });
   };
 
   useEffect(() => {
@@ -100,7 +145,17 @@ const Admin = () => {
                       Billing
                     </a>
                     <hr className="dropdown-divider" />
-                    <a href="#" className="dropdown-item">
+                    <a
+                      href="#"
+                      className="dropdown-item"
+                      onClick={() => {
+                        localStorage.removeItem("token");
+                        localStorage.removeItem("user");
+                        localStorage.clear();
+                        navigate("/login");
+                        window.location.reload();
+                      }}
+                    >
                       Logout
                     </a>
                   </div>
@@ -238,7 +293,17 @@ const Admin = () => {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
+                    <a
+                      className="nav-link"
+                      href="#"
+                      onClick={() => {
+                        localStorage.removeItem("token");
+                        localStorage.removeItem("user");
+                        localStorage.clear();
+                        navigate("/login");
+                        window.location.reload();
+                      }}
+                    >
                       <i className="bi bi-box-arrow-left" /> Logout
                     </a>
                   </li>
@@ -439,57 +504,58 @@ const Admin = () => {
                       <tbody>
                         {Array.isArray(activities) &&
                           activities.map((el) => {
-                            <tr>
-                              <td>
-                                <img
-                                  alt="..."
-                                  src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-                                  className="avatar avatar-sm rounded-circle me-2"
-                                />
-                                <a
-                                  className="text-heading font-semibold"
-                                  href="#"
-                                >
-                                  {el?.userId?.name}
-                                </a>
-                              </td>
-                              <td>{el?.bookingDate}</td>
-                              <td>
-                                <img
-                                  alt="..."
-                                  src="https://preview.webpixels.io/web/img/other/logos/logo-1.png"
-                                  className="avatar avatar-xs rounded-circle me-2"
-                                />
-                                <a
-                                  className="text-heading font-semibold"
-                                  href="#"
-                                >
-                                  {el?.activityTime}
-                                </a>
-                              </td>
-                              <td>$3.500</td>
-                              <td>
-                                <span className="badge badge-lg badge-dot">
-                                  <i className="bg-success" />
-                                  {el?.phone}
-                                </span>
-                              </td>
-                              <td className="text-end">
-                                <a href="#" className="btn btn-sm btn-neutral">
-                                  View
-                                </a>
-                                <button
-                                  type="button"
-                                  className="btn btn-sm btn-square btn-neutral text-danger-hover"
-                                >
-                                  <i className="bi bi-trash" />
-                                </button>
-                              </td>
-                            </tr>;
+                            return (
+                              <tr key={el.id}>
+                                <td>
+                                  {/* <img
+                                    alt="..."
+                                    src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
+                                    className="avatar avatar-sm rounded-circle me-2"
+                                  /> */}
+                                  <a
+                                    className="text-heading font-semibold"
+                                    href="#"
+                                  >
+                                    {el?.userId?.email}
+                                  </a>
+                                </td>
+                                <td>{el?.activityName}</td>
+                                <td>
+                                  {/* <img
+                                    alt="..."
+                                    src="https://preview.webpixels.io/web/img/other/logos/logo-1.png"
+                                    className="avatar avatar-xs rounded-circle me-2"
+                                  /> */}
+                                  <a
+                                    className="text-heading font-semibold"
+                                    href="#"
+                                  >
+                                    {el?.bookingDate}
+                                  </a>
+                                </td>
+                                {/* <td>$3.500</td> */}
+                                <td>
+                                  <span className="badge badge-lg badge-dot">
+                                    <i className="bg-success" />
+                                    {el?.activityTime}
+                                  </span>
+                                </td>
+                                <td className="text-end">
+                                  <button
+                                    type="button"
+                                    className="btn btn-sm btn-square btn-neutral text-danger-hover"
+                                    onClick={() => handleDelete(el._id)}
+                                  >
+                                    <i className="bi bi-trash" />
+                                  </button>
+                                </td>
+                              </tr>
+                            );
                           })}
                       </tbody>
                     </table>
                   </div>
+
                   <div className="card-footer border-0 py-5">
                     <span className="text-muted text-sm">
                       Showing 10 items out of 250 results found

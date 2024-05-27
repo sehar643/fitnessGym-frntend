@@ -38,8 +38,10 @@ const Login = () => {
       localStorage.setItem("user", JSON.stringify(userData.user));
       if (userData.user.role == "admin") {
         navigate("/admin");
+        window.location.reload();
       } else {
         navigate("/");
+        window.location.reload();
         toast.success("Login successful!");
       }
       // window.location.reload();
